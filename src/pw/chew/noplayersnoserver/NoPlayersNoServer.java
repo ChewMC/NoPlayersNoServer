@@ -15,7 +15,7 @@ public class NoPlayersNoServer extends JavaPlugin {
 
     this.getCommand("npns").setExecutor(new HelpCommand());
     getServer().getPluginManager().registerEvents(new ByeByePlayer(), this);
-    System.out.println("Timer won't activate until someone leaves.");
+    System.out.println("[NoPlayersNoServer] Timer won't activate until someone leaves.");
   }
   // Fired when plugin is disabled
   public void onDisable() {
