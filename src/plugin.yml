@@ -1,0 +1,14 @@
+name: NoPlayersNoServer
+main: pw.chew.noplayersnoserver.NoPlayersNoServer
+version: 1.0
+api-version: 1.14
+description: Turn off the server when no one's on.
+author: Chewsterchew
+website: https://github.com/Chew/NoPlayersNoServer
+commands:
+   npns:
+      description: The main command for the plugin.
+      usage: "Usage: /npns"
+      permission: npns.main
+      permission-message: The admins have revoked your ability to run this command!
+      default: true
