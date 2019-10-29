@@ -20,7 +20,7 @@ public class TimerUntilBye {
   }
 
   public void startTimer() {
-    timer.schedule(task, 20000, 5000);
+    timer.schedule(task, NoPlayersNoServer.time, 5000);
   }
 
   public void restartTimer() {

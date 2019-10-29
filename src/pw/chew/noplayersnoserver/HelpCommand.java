@@ -9,13 +9,11 @@ public class HelpCommand implements CommandExecutor {
 
     // This method is called, when somebody uses our command
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-      if (sender instanceof Player) {
-          Server server = sender.getServer();
-          int players = server.getOnlinePlayers().size();
+      Server server = sender.getServer();
+      int players = server.getOnlinePlayers().size();
 
-          Player p = (Player) sender;
-          p.sendMessage("Welcome to NPNS!\nThis plugin works automatically. Just leave and 10 seconds later the server will stop!\nCurrently there are " + players + " player(s) online");
-      }
+      Player p = (Player) sender;
+      p.sendMessage("Welcome to NPNS!\nThis plugin works automatically. Just leave and a set amount of seconds later the server will stop!\nCurrently there are " + players + " player(s) online!\nThe server is set to shutdown after " + NoPlayersNoServer.time + " milliseconds.");
 
       // If the player (or console) uses our command correct, we can return true
       return true;
