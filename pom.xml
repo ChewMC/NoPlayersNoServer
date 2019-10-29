@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>pw.chew.noplayersnoserver</groupId>
   <artifactId>NoPlayersNoServer</artifactId>
-  <version>0.1.0-Dev-${BUILD_NUMBER}</version>
+  <version>0.2.0</version>
   <name>NoPlayersNoServer</name>
 
   <repositories>
