@@ -1,35 +1,20 @@
 package pw.chew.noplayersnoserver;
 import org.bukkit.Bukkit;
-import java.util.Timer;
-import java.util.TimerTask;
-
-class StopIt extends TimerTask {
-  public void run() {
-    if(anyOnlinePlayers()) {
-      System.out.println("[NoPlayersNoServer] ??? There's players online, not gonna stop the server");
-      TimerUntilBye.timer.cancel();
-    } else {
-      System.out.println("[NoPlayersNoServer] The server will now shut down!");
-      Bukkit.getServer().shutdown();
-    }
-  }
-
-  public static boolean anyOnlinePlayers() {
-    return Bukkit.getServer().getOnlinePlayers().size() > 0;
-  }
-}
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 public class TimerUntilBye {
-  static Timer timer;
-  static TimerTask task;
+  static ScheduledExecutorService executor;
+  static Future<?> shutdown;
 
   public TimerUntilBye() {
-    timer = new Timer();
-    task = new StopIt();
+    executor = Executors.newSingleThreadScheduledExecutor();
   }
 
   public void startTimer() {
-    timer.schedule(task, NoPlayersNoServer.time, 5000);
+    shutdown = executor.schedule(() -> run(), NoPlayersNoServer.time, TimeUnit.MILLISECONDS);
   }
 
   public void restartTimer() {
@@ -39,10 +24,23 @@ public class TimerUntilBye {
 
   public void stopTimer() {
     try {
-      timer.cancel();
-    } catch(IllegalStateException e) {
+      shutdown.cancel(true);
+    } catch(NullPointerException e) {
       System.out.println("[NoPlayersNoServer] Tried to cancel already cancelled timer. It's ok though, ignore me and move on!.");
     }
-    timer.purge();
+  }
+
+  public void run() {
+    if(anyOnlinePlayers()) {
+      System.out.println("[NoPlayersNoServer] ??? There's players online, not gonna stop the server");
+      shutdown.cancel(true);
+    } else {
+      System.out.println("[NoPlayersNoServer] The server will now shut down!");
+      Bukkit.getServer().shutdown();
+    }
+  }
+
+  public static boolean anyOnlinePlayers() {
+    return Bukkit.getServer().getOnlinePlayers().size() > 0;
   }
 }
