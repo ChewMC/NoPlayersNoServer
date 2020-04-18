@@ -6,7 +6,6 @@ public class NoPlayersNoServer extends JavaPlugin {
   static int time = 0;
   public static TimerUntilBye timer;
   // Fired when plugin is first enabled
-  TimerUntilBye timer = new TimerUntilBye();
   public void onEnable() {
     FileConfiguration config = this.getConfig();
     config.addDefault("shutdownAfter", 20000);
@@ -18,10 +17,13 @@ public class NoPlayersNoServer extends JavaPlugin {
     this.getCommand("npns").setExecutor(new MainCommand());
     getServer().getPluginManager().registerEvents(new ByeByePlayer(), this);
     getLogger().info("Timer won't activate until someone leaves.");
+
+    this.getCommand("npns").setTabCompleter(new MainCommand());
   }
   // Fired when plugin is disabled
   public void onDisable() {
-
+    // Stop timer
+    timer.stopTimer();
   }
 
   public int getTime() {
