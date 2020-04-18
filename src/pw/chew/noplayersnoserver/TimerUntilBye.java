@@ -14,7 +14,7 @@ public class TimerUntilBye {
   }
 
   public void startTimer() {
-    shutdown = executor.schedule(() -> run(), NoPlayersNoServer.time, TimeUnit.MILLISECONDS);
+    shutdown = executor.schedule(this::run, NoPlayersNoServer.time, TimeUnit.MILLISECONDS);
   }
 
   public void restartTimer() {
@@ -26,7 +26,7 @@ public class TimerUntilBye {
     try {
       shutdown.cancel(true);
     } catch(NullPointerException e) {
-      System.out.println("[NoPlayersNoServer] Tried to cancel already cancelled timer. It's ok though, ignore me and move on!.");
+      System.out.println("[NoPlayersNoServer] Tried to cancel already cancelled timer. It's ok though, ignore me and move on!");
     }
   }
 
