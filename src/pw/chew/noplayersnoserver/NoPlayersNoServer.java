@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class NoPlayersNoServer extends JavaPlugin {
   static int time = 0;
+  public static TimerUntilBye timer;
   // Fired when plugin is first enabled
   TimerUntilBye timer = new TimerUntilBye();
   public void onEnable() {
@@ -12,6 +13,7 @@ public class NoPlayersNoServer extends JavaPlugin {
     config.options().copyDefaults(true);
     saveConfig();
     time = config.getInt("shutdownAfter");
+    timer = new TimerUntilBye();
 
     this.getCommand("npns").setExecutor(new MainCommand());
     getServer().getPluginManager().registerEvents(new ByeByePlayer(), this);
@@ -24,5 +26,9 @@ public class NoPlayersNoServer extends JavaPlugin {
 
   public int getTime() {
     return time;
+  }
+
+  public TimerUntilBye timer() {
+    return timer;
   }
 }

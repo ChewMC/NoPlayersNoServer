@@ -8,7 +8,7 @@ public class ByeByePlayer implements Listener {
   @EventHandler
   public void onPlayerJoin(PlayerJoinEvent event) {
     // Code that happens when a player joins
-    new TimerUntilBye().stopTimer();
+    NoPlayersNoServer.timer.stopTimer();
     System.out.println("[NoPlayersNoServer] Player joined, the timer has stopped.");
   }
 
@@ -17,7 +17,7 @@ public class ByeByePlayer implements Listener {
     // Code that happens when a player leaves
     int players = event.getPlayer().getServer().getOnlinePlayers().size() - 1;
     if (players == 0) {
-      new TimerUntilBye().startTimer();
+      NoPlayersNoServer.timer.startTimer();
       System.out.println("[NoPlayersNoServer] No players online, timer will start.");
     } else {
       System.out.println("[NoPlayersNoServer] Player left, however there are " + players + " players online, not starting timer.");
