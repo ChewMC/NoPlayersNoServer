@@ -10,7 +10,10 @@ public class HelpCommand implements CommandExecutor {
     Server server = sender.getServer();
     int players = server.getOnlinePlayers().size();
 
-    sender.sendMessage("Welcome to NPNS!\nThis plugin works automatically. Just leave and a set amount of seconds later the server will stop!\nCurrently there are " + players + " player(s) online!\nThe server is set to shutdown after " + NoPlayersNoServer.time + " milliseconds.");
+    sender.sendMessage("Welcome to NPNS!");
+    sender.sendMessage("This plugin works automatically. Just leave and a set amount of seconds later the server will stop!");
+    sender.sendMessage("Currently there are " + players + " player(s) online!");
+    sender.sendMessage("The server is set to shutdown after " + NoPlayersNoServer.time + " milliseconds.");
 
     // If the player (or console) uses our command correct, we can return true
     return true;
