@@ -18,3 +18,6 @@ permissions:
       default: op
       children:
          npns.main: true
+         npns.get: true
+         npns.start: true
+         npns.stop: true
