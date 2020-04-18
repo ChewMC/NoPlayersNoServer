@@ -4,7 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class HelpCommand implements CommandExecutor {
+public class MainCommand implements CommandExecutor {
   // This method is called, when somebody uses our command
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     Server server = sender.getServer();

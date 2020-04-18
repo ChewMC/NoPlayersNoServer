@@ -13,7 +13,7 @@ public class NoPlayersNoServer extends JavaPlugin {
     saveConfig();
     time = config.getInt("shutdownAfter");
 
-    this.getCommand("npns").setExecutor(new HelpCommand());
+    this.getCommand("npns").setExecutor(new MainCommand());
     getServer().getPluginManager().registerEvents(new ByeByePlayer(), this);
     getLogger().info("Timer won't activate until someone leaves.");
   }
